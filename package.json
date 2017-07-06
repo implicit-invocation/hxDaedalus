@@ -1,0 +1,19 @@
+{
+  "name": "hxdaedalus-js",
+  "version": "1.0.1",
+  "description": "![](http://haxe.io/img/301/hxdaedalus.png) hxDaedalus ==========",
+  "main": "hxDaedalus.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/implicit-invocation/hxDaedalus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/implicit-invocation/hxDaedalus/issues"
+  },
+  "homepage": "https://github.com/implicit-invocation/hxDaedalus#readme"
+}
