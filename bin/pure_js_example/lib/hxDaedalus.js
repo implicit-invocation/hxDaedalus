@@ -276,8 +276,14 @@ hxDaedalus_ai_AStar.prototype = {
 					}
 					fromPoint.x = this.entryX.h[this.curFace.__id__];
 					fromPoint.y = this.entryY.h[this.curFace.__id__];
-					entryPoint.x = (innerEdge.get_originVertex().get_pos().x + innerEdge.get_destinationVertex().get_pos().x) / 2;
-					entryPoint.y = (innerEdge.get_originVertex().get_pos().y + innerEdge.get_destinationVertex().get_pos().y) / 2;
+					if(!hxDaedalus_data_math_Geom2D.intersections2segments(fromPoint.x,fromPoint.y,toX,toY,vw1.x,vw1.y,vw2.x,vw2.y,entryPoint)) {
+						entryPoint.x = toX;
+						entryPoint.y = toY;
+						var vst = vw1.distanceSquaredTo(fromPoint) + vw1.distanceSquaredTo(entryPoint);
+						var wst = vw2.distanceSquaredTo(fromPoint) + vw2.distanceSquaredTo(entryPoint);
+						entryPoint.x = vst <= wst ? vw1.x : vw2.x;
+						entryPoint.y = vst <= wst ? vw1.y : vw2.y;
+					}
 					distancePoint.x = entryPoint.x - toX;
 					distancePoint.y = entryPoint.y - toY;
 					h = distancePoint.get_length();
@@ -3287,6 +3293,11 @@ hxDaedalus_data_math_Point2D.prototype = {
 		var diffX = this.x - p.x;
 		var diffY = this.y - p.y;
 		return Math.sqrt(diffX * diffX + diffY * diffY);
+	}
+	,distanceSquaredTo: function(p) {
+		var diffX = this.x - p.x;
+		var diffY = this.y - p.y;
+		return diffX * diffX + diffY * diffY;
 	}
 	,__class__: hxDaedalus_data_math_Point2D
 };
